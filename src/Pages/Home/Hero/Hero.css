@@ -1,0 +1,32 @@
+#hero-slider .awssld__content::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(
+    90.62deg,
+    rgba(0, 0, 0, 0.69) 27.64%,
+    rgba(0, 0, 0, 0.05) 102.89%
+  );
+  z-index: -1;
+}
+
+#hero-slider .awssld__content {
+  position: relative;
+  z-index: 2;
+}
+
+#hero-slider .awssld__wrapper {
+  height: calc(100vh - 109px);
+}
+
+#hero-slider .awssld__bullets {
+  display: none;
+}
+
+#hero-slider .awssld__controls span::before,
+#hero-slider .awssld__controls span::after {
+  background: #bf9241;
+}
