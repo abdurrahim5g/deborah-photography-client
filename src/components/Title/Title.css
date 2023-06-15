@@ -1,0 +1,9 @@
+h2.site-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+h2.site-title span {
+  color: var(--primary-color);
+}
