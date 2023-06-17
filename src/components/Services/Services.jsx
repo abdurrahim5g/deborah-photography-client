@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Title from "../Title/Title";
 import "./Services.css";
 import ServiceCard from "../ServiceCard/ServiceCard";
@@ -24,6 +24,17 @@ const Services = () => {
                 ></ServiceCard>
               ))}
             </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="view-all-buttons text-center">
+            <Link
+              to="/services/"
+              className="inline-block  rounded bg-yellow-400 p-4 px-10 text-sm font-medium transition hover:scale-105 text-center"
+            >
+              View all services
+            </Link>
           </div>
         </div>
       </div>
