@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const ServiceCard = ({ service }) => {
   // eslint-disable-next-line react/prop-types
-  const { title, thumbnail, price, duration } = service;
+  const { title, thumbnail, price, duration, id } = service;
 
   return (
     <div className="service-card">
@@ -34,9 +34,12 @@ const ServiceCard = ({ service }) => {
           </p>
 
           <form className="mt-4">
-            <button className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105">
+            <Link
+              to={`/services/${id}`}
+              className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105 text-center"
+            >
               Book Now
-            </button>
+            </Link>
           </form>
         </div>
       </Link>
