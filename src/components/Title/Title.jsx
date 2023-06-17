@@ -1,10 +1,10 @@
 import "./Title.css";
 
 // eslint-disable-next-line react/prop-types
-const Title = ({ children }) => {
+const Title = ({ children, subtitle }) => {
   return (
     <h2 className="site-title">
-      Our <span>{children}</span>
+      {subtitle ? subtitle : "Our "} <span>{children}</span>
     </h2>
   );
 };
