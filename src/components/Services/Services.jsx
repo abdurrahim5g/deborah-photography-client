@@ -3,6 +3,7 @@ import Title from "../Title/Title";
 import "./Services.css";
 import ServiceCard from "../ServiceCard/ServiceCard";
 
+// eslint-disable-next-line react/prop-types
 const Services = ({ page }) => {
   const services = useLoaderData();
   console.log(services);
