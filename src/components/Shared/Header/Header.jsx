@@ -36,7 +36,7 @@ const Header = () => {
           <div className="items-center justify-end gap-4 sm:flex md:flex-1">
             <Link
               className="rounded-lg bg-blue-500 px-5 py-2 text-sm font-medium text-white"
-              href=""
+              to="/signup"
             >
               Sign up
             </Link>
