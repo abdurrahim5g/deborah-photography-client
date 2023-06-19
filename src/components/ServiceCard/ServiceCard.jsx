@@ -35,7 +35,7 @@ const ServiceCard = ({ service }) => {
               to={`/services/${id}`}
               className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105 text-center"
             >
-              Book Now
+              Learn More
             </Link>
           </form>
         </div>

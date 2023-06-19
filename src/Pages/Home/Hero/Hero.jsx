@@ -32,25 +32,12 @@ const Hero = () => {
 
                 <Link
                   className="group relative inline-block overflow-hidden border border-yellow-500 px-8 py-3 focus:outline-none focus:ring mr-4"
-                  to="/"
+                  to={`/services/${s.id}`}
                 >
                   <span className="absolute inset-y-0 left-0 w-[2px] bg-yellow-500 transition-all group-hover:w-full group-active:bg-yellow-500"></span>
 
                   <span className="relative text-sm font-medium text-yellow-500 transition-colors group-hover:text-white">
-                    Book Now
-                  </span>
-                </Link>
-
-                {/* Right */}
-
-                <Link
-                  className="group relative inline-block overflow-hidden border border-yellow-500 px-8 py-3 focus:outline-none focus:ring"
-                  to="/"
-                >
-                  <span className="absolute inset-y-0 right-0 w-[2px] bg-yellow-500 transition-all group-hover:w-full group-active:bg-yellow-500"></span>
-
-                  <span className="relative text-sm font-medium text-yellow-500 transition-colors group-hover:text-white">
-                    View Details
+                    Learn more
                   </span>
                 </Link>
               </div>
