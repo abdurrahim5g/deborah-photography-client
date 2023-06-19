@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import google from "../../assets/images/google.png";
 import { useState } from "react";
+import { useAuthContex } from "../../Contex/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
+  const { providerSignIn } = useAuthContex();
+  // console.log(user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +23,14 @@ const Login = () => {
       ...userInfo,
       [name]: value,
     });
+  };
+
+  // Provider sign in handler
+  const googleProvider = new GoogleAuthProvider();
+  const handleProviderSignIn = (provider) => {
+    providerSignIn(provider)
+      .then((result) => console.log(result.user))
+      .catch((err) => console.log(err.code));
   };
 
   return (
@@ -107,7 +119,10 @@ const Login = () => {
             </form>
 
             <div className="continue-with-google mt-8 text-center">
-              <button className="border-0 outline-non max-w-xs ">
+              <button
+                className="border-0 outline-non max-w-xs "
+                onClick={() => handleProviderSignIn(googleProvider)}
+              >
                 <img src={google} alt="Google" />
               </button>
             </div>
