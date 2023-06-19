@@ -7,10 +7,7 @@ const ServiceCard = ({ service }) => {
 
   return (
     <div className="service-card">
-      <Link
-        to="/"
-        className="group  shadow-md relative block overflow-hidden rounded-xl"
-      >
+      <div className="group  shadow-md relative block overflow-hidden rounded-xl">
         <img
           src={thumbnail}
           alt=""
@@ -42,7 +39,7 @@ const ServiceCard = ({ service }) => {
             </Link>
           </form>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
