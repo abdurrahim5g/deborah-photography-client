@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
 import "./Signup.css";
 import google from "../../assets/images/google.png";
+import { useState } from "react";
 
 const Signup = () => {
+  const [userInfo, setUserInfo] = useState({});
+  const [agree, setAgree] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userInfo);
+  };
+
+  const handleInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+  };
+
   return (
     <section className="bg-white">
       <div
@@ -20,6 +39,7 @@ const Signup = () => {
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
             <form
+              onSubmit={handleSubmit}
               action="#"
               className="mt-8 grid grid-cols-1 gap-6 login-signup-form"
             >
@@ -35,6 +55,7 @@ const Signup = () => {
                   type="text"
                   id="name"
                   name="name"
+                  onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -51,6 +72,7 @@ const Signup = () => {
                   type="email"
                   id="email"
                   name="email"
+                  onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -67,6 +89,7 @@ const Signup = () => {
                   type="password"
                   id="password"
                   name="password"
+                  onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -83,6 +106,7 @@ const Signup = () => {
                   type="url"
                   id="photoURL"
                   name="photoURL"
+                  onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -93,6 +117,7 @@ const Signup = () => {
                     type="checkbox"
                     id="tramsAgree"
                     name="tramsAgree"
+                    onClick={() => setAgree(!agree)}
                     className="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
                   />
 
@@ -106,7 +131,12 @@ const Signup = () => {
               </div>
 
               <div className="  sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+                <button
+                  className={`inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 ${
+                    !agree && "opacity-50"
+                  }`}
+                  disabled={!agree}
+                >
                   Create an account
                 </button>
 
