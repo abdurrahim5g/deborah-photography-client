@@ -1,0 +1,8 @@
+.login-signup-form input {
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+}
+
+.login-signup-form input:focus {
+  outline: 1px solid #2563eb;
+}
