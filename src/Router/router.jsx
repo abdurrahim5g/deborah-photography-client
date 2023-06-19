@@ -5,6 +5,7 @@ import ServicePage from "../Pages/ServicePage/ServicePage";
 import SingleService from "../Pages/SingleService/SingleService";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
+import TramsAndCondition from "../Pages/TramsAndCondition/TramsAndCondition";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <Signup></Signup>,
+      },
+      {
+        path: "trams-and-condition",
+        element: <TramsAndCondition></TramsAndCondition>,
       },
     ],
   },
