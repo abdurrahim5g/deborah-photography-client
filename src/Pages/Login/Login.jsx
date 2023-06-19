@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import google from "../../assets/images/google.png";
 import { useState } from "react";
@@ -7,12 +7,20 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
-  const { providerSignIn } = useAuthContex();
-  // console.log(user);
+  // contex provider
+  const { providerSignIn, userLogin } = useAuthContex();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userInfo);
+
+    userLogin(userInfo.email, userInfo.password)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => console.log(err.code));
   };
 
   const handleInputChange = (e) => {
@@ -65,6 +73,7 @@ const Login = () => {
                   type="email"
                   id="email"
                   name="email"
+                  required
                   onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
@@ -83,6 +92,7 @@ const Login = () => {
                   id="password"
                   name="password"
                   onChange={handleInputChange}
+                  required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>

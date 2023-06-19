@@ -1,20 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import google from "../../assets/images/google.png";
 import { useState } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { useAuthContex } from "../../Contex/AuthProvider";
 
 const Signup = () => {
   const [userInfo, setUserInfo] = useState({});
   const [agree, setAgree] = useState(false);
+  const navigate = useNavigate();
 
   // contex provider
-  const { providerSignIn } = useAuthContex();
+  const { providerSignIn, createUser } = useAuthContex();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInfo);
+
+    createUser(userInfo.email, userInfo.password)
+      .then((result) => {
+        console.log(result.user);
+        updateProfile(result.user, {
+          displayName: userInfo.name,
+          photoURL: userInfo.photoURL,
+        });
+        navigate("/");
+      })
+      .catch((err) => console.log(err.code));
   };
 
   const handleInputChange = (e) => {
@@ -69,6 +80,7 @@ const Signup = () => {
                   id="name"
                   name="name"
                   onChange={handleInputChange}
+                  required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -86,6 +98,7 @@ const Signup = () => {
                   id="email"
                   name="email"
                   onChange={handleInputChange}
+                  required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -103,6 +116,7 @@ const Signup = () => {
                   id="password"
                   name="password"
                   onChange={handleInputChange}
+                  required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -120,6 +134,7 @@ const Signup = () => {
                   id="photoURL"
                   name="photoURL"
                   onChange={handleInputChange}
+                  required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
