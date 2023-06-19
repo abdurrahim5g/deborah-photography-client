@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "title": "Elegant Wedding Moments",
         "image": "https://img.freepik.com/free-photo/beautiful-woman-long-red-dress-walks-around-city-with-her-husband_1157-13373.jpg",
         "thumbnail": "https://img.freepik.com/free-photo/beautiful-woman-long-red-dress-walks-around-city-with-her-husband_1157-13373.jpg",
@@ -21,7 +20,6 @@
         }
     },
     {
-        "id": 2,
         "title": "Enchanting Moments",
         "image": "https://img.freepik.com/free-photo/beautiful-wedding-walk-nature-ukraine-sumy_8353-5800.jpg",
         "thumbnail": "https://img.freepik.com/free-photo/beautiful-wedding-walk-nature-ukraine-sumy_8353-5800.jpg",
@@ -42,7 +40,6 @@
         }
     },
     {
-        "id": 3,
         "title": "Dreamy Destination Weddings",
         "image": "https://img.freepik.com/free-photo/wedding-archway-backyard-happy-wedding-couple-outdoors-before-wedding-ceremony_8353-11057.jpg",
         "thumbnail": "https://img.freepik.com/free-photo/wedding-archway-backyard-happy-wedding-couple-outdoors-before-wedding-ceremony_8353-11057.jpg",
