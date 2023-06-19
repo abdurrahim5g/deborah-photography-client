@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Signup.css";
+import google from "../../assets/images/google.png";
 
 const Signup = () => {
   return (
@@ -118,6 +119,12 @@ const Signup = () => {
                 </p>
               </div>
             </form>
+
+            <div className="continue-with-google mt-8 text-center">
+              <button className="border-0 outline-non max-w-xs ">
+                <img src={google} alt="Google" />
+              </button>
+            </div>
           </div>
         </main>
       </div>
