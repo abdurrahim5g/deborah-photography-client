@@ -1,7 +1,9 @@
 import { Link, useLoaderData } from "react-router-dom";
 import "./SingleService.css";
 import Title from "../../components/Title/Title";
-import { FaStar, FaTimes, FaUser } from "react-icons/fa";
+import { FaClock, FaDollarSign, FaStar, FaUser } from "react-icons/fa";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 const SingleService = () => {
   const service = useLoaderData();
@@ -21,20 +23,24 @@ const SingleService = () => {
 
             <div className="mt-4 md:mt-8">
               <Link
-                to={`/services/${0}`}
+                to={`/review/${service._id}`}
                 className="block w-2/4 mx-auto rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105 text-center"
               >
-                Leave a Rating
+                Leave a Review
               </Link>
             </div>
           </div>
         </div>
 
-        <img
-          alt="Student"
-          src="https://images.unsplash.com/photo-1464582883107-8adf2dca8a9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          className="h-56 w-full object-cover sm:h-full"
-        />
+        <PhotoProvider>
+          <PhotoView src={service.image}>
+            <img
+              alt="Student"
+              src={service.image}
+              className="h-56 w-full object-cover sm:h-full cursor-pointer"
+            />
+          </PhotoView>
+        </PhotoProvider>
       </section>
 
       <section className="others-info py-12 md:py-20">
@@ -47,7 +53,7 @@ const SingleService = () => {
             <div className="w-full  mx-auto grid gap-8 grid-cols-3">
               <article className="flex shadow items-center gap-4 rounded-lg border border-gray-100 bg-white p-6">
                 <span className="rounded-full bg-blue-100 p-3 text-blue-600">
-                  <FaTimes />
+                  <FaClock />
                 </span>
                 <div>
                   <p className="text-2xl font-medium text-gray-900">
@@ -59,7 +65,7 @@ const SingleService = () => {
 
               <article className="flex items-center gap-4 rounded-lg border border-gray-100 bg-white p-6">
                 <span className="rounded-full bg-blue-100 p-3 text-blue-600">
-                  <FaTimes />
+                  <FaDollarSign />
                 </span>
                 <div>
                   <p className="text-2xl font-medium text-gray-900">
@@ -152,47 +158,14 @@ const SingleService = () => {
           <hr className="border-2 border-blue-500 mt-8" />
 
           <div className="row mt-10">
-            <p className="mb-5">
-              <strong>Total: </strong> 9 Reviews
-            </p>
-            <form action="#">
-              <div>
-                <label
-                  htmlFor="HeadlineAct"
-                  className="block text-sm font-medium text-gray-900"
-                >
-                  Rating
-                </label>
-
-                <select
-                  name="HeadlineAct"
-                  id="HeadlineAct"
-                  className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm p-3 mb-4"
-                >
-                  <option value="">Please select</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-              <div>
-                <label className="" htmlFor="message">
-                  Review Text
-                </label>
-
-                <textarea
-                  className="w-full rounded-lg shadow-lg p-3 px-5 text-sm focus:outline-blue-500"
-                  placeholder="Message"
-                  rows="3"
-                  id="message"
-                ></textarea>
-              </div>
-              <button className="block mt-3 rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105 text-center">
-                Submit review
-              </button>
-            </form>
+            <div className="mt-4 md:mt-8">
+              <Link
+                className="block w-2/4 mx-auto rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105 text-center"
+                to={`/review/${service._id}`}
+              >
+                Leave a Review
+              </Link>
+            </div>
           </div>
         </div>
       </section>
