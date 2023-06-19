@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import "./Hero.css";
 import AwesomeSlider from "react-awesome-slider";
 
 import "react-awesome-slider/dist/styles.css";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Hero = () => {
-  const [services, setServices] = useState([]);
+  // const [services, setServices] = useState([]);
 
-  useEffect(() => {
-    fetch("services.json")
-      .then((res) => res.json())
-      .then((data) => setServices(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("services.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setServices(data));
+  // }, []);
 
+  const services = useLoaderData();
   return (
     <div id="hero-slider">
       <AwesomeSlider>
