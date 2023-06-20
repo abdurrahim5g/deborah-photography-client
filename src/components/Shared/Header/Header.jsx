@@ -1,12 +1,23 @@
 import "./Header.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo-light.png";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
+import { useAuthContex } from "../../../Contex/AuthProvider";
 
 const Header = () => {
   // state for mobile menu
   const [show, setShow] = useState(false);
+
+  const { user, logout } = useAuthContex();
+  const navigate = useNavigate();
+
+  // handleLogout
+  const handleLogout = () => {
+    logout()
+      .then(() => navigate("/"))
+      .catch((err) => console.log(err.code));
+  };
 
   // menu items
   const menuItems = (
@@ -34,12 +45,21 @@ const Header = () => {
           </nav>
 
           <div className="items-center justify-end gap-4 sm:flex md:flex-1">
-            <Link
-              className="rounded-lg bg-blue-500 px-5 py-2 text-sm font-medium text-white"
-              to="/signup"
-            >
-              Sign up
-            </Link>
+            {!user?.uid ? (
+              <Link
+                className="rounded bg-blue-500 px-5 py-2 text-sm font-medium text-white"
+                to="/signup"
+              >
+                Sign up
+              </Link>
+            ) : (
+              <button
+                className="rounded bg-yellow-500 hover:bg-yellow-400 px-5 py-2 text-sm font-medium text-white"
+                onClick={handleLogout}
+              >
+                Sign Out
+              </button>
+            )}
           </div>
 
           <div className="md:hidden ">
