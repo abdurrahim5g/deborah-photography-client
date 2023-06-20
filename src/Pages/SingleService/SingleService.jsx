@@ -4,10 +4,22 @@ import Title from "../../components/Title/Title";
 import { FaClock, FaDollarSign, FaStar, FaUser } from "react-icons/fa";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import { useEffect, useState } from "react";
 
 const SingleService = () => {
   const service = useLoaderData();
-  console.log(service);
+  const [reviews, setReviews] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/review?serviceId=${service._id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
+        console.log(data);
+      });
+  }, [service]);
+
+  // console.log(service);
   return (
     <>
       <section className="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
@@ -104,58 +116,47 @@ const SingleService = () => {
             <Title subtitle={"Service"}>Review</Title>
           </div>
 
-          <div className="row mt-10">
-            <article>
-              <div className="flex items-center mb-4 space-x-4">
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src="/docs/images/people/profile-picture-5.jpg"
-                  alt=""
-                />
-                <div className="space-y-1 font-medium dark:text-white">
-                  <p>
-                    Jese Leos{" "}
-                    <time
-                      dateTime="2014-08-16 19:00"
-                      className="block text-sm text-gray-500 dark:text-gray-400"
-                    >
-                      Joined on August 2014
-                    </time>
-                  </p>
+          <div className="row mt-10 grid gap-8">
+            {reviews?.map((review) => (
+              <article key={review._id} className="single-review">
+                <div className="flex items-center mb-4 space-x-4">
+                  <img
+                    className="w-10 h-10 rounded-full object-cover border-yellow-400 shadow-lg border-2"
+                    src={review.clientImage}
+                    alt={review.className}
+                  />
+                  <div className="space-y-1 font-medium dark:text-white">
+                    <p>{review.clientName} </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center mb-1">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <h3 className="ml-2 text-sm font-semibold text-gray-900 dark:text-white">
-                  Thinking to buy another one!
-                </h3>
-              </div>
-              <footer className="mb-5 text-sm text-gray-500 dark:text-gray-400">
-                <p>
-                  Reviewed in the United Kingdom on{" "}
-                  <time dateTime="2017-03-03 19:00">March 3, 2017</time>
-                </p>
-              </footer>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                This is my third Invicta Pro Diver. They are just fantastic
-                value for money. This one arrived yesterday and the first thing
-                I did was set the time, popped on an identical strap from
-                another Invicta and went in the shower with it to test the
-                waterproofing.... No problems.
-              </p>
-              <p className="mb-3 text-gray-500 dark:text-gray-400">
-                It is obviously not the same build quality as those very
-                expensive watches. But that is like comparing a Citroën to a
-                Ferrari. This watch was well under £100! An absolute bargain.
-              </p>
-            </article>
+                <div className="pl-14">
+                  <div className="flex items-center mb-1 gap-1">
+                    {[...Array(parseInt(review.rating)).keys()].map((key) => (
+                      <FaStar key={key} className="text-yellow-500" />
+                    ))}
+                    {[...Array(parseInt(5 - review.rating)).keys()].map(
+                      (key) => (
+                        <FaStar key={key} className="text-gray-400" />
+                      )
+                    )}
+                  </div>
+
+                  {review.reviewText.split("\n").map((single, index) => (
+                    <p key={index} className="mt-4">
+                      {single}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            ))}
+            {reviews?.length === 0 && (
+              <h2 className="text-center font-semibold text-2xl text-gray-700">
+                No review available
+              </h2>
+            )}
           </div>
 
-          <hr className="border-2 border-blue-500 mt-8" />
+          <hr className="border-b-1 border-gray-300 mt-8" />
 
           <div className="row mt-10">
             <div className="mt-4 md:mt-8">
