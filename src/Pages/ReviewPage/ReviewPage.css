@@ -1,0 +1,55 @@
+.review-form .single-form-item .col label {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.review-form .single-form-item .col input:checked + label {
+  background: #facc15;
+  color: #fff;
+}
+
+.review-form .single-form-item .col input {
+  width: 0px;
+  height: 0px;
+  visibility: hidden;
+  display: none;
+}
+
+.single-form-item {
+  margin: 0 0 20px;
+}
+
+.single-form-item > label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.single-form-item > textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  outline: none;
+}
+
+/* =========================
+Responsive styles
+============================ */
+@media all and (max-width: 767px) {
+  .review-form .single-form-item .col label {
+    font-size: 16px;
+    display: grid;
+    gap: 0px;
+  }
+}

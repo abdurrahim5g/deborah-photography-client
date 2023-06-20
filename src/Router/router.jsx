@@ -6,6 +6,7 @@ import SingleService from "../Pages/SingleService/SingleService";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import TramsAndCondition from "../Pages/TramsAndCondition/TramsAndCondition";
+import ReviewPage from "../Pages/ReviewPage/ReviewPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,12 @@ const router = createBrowserRouter([
       {
         path: "/services/:id",
         element: <SingleService></SingleService>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
+      },
+      {
+        path: "/review/:id",
+        element: <ReviewPage></ReviewPage>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
       },
