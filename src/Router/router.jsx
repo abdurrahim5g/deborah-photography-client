@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import TramsAndCondition from "../Pages/TramsAndCondition/TramsAndCondition";
 import ReviewPage from "../Pages/ReviewPage/ReviewPage";
+import Protected from "./Protected";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/review/:id",
-        element: <ReviewPage></ReviewPage>,
+        element: (
+          <Protected>
+            <ReviewPage></ReviewPage>
+          </Protected>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
       },

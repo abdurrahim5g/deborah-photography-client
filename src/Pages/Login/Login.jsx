@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import google from "../../assets/images/google.png";
 import { useState } from "react";
@@ -10,7 +10,10 @@ const Login = () => {
   // contex provider
   const { providerSignIn, userLogin } = useAuthContex();
 
+  const location = useLocation();
   const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +21,7 @@ const Login = () => {
 
     userLogin(userInfo.email, userInfo.password)
       .then(() => {
-        navigate("/");
+        navigate(from);
       })
       .catch((err) => console.log(err.code));
   };
@@ -37,7 +40,10 @@ const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const handleProviderSignIn = (provider) => {
     providerSignIn(provider)
-      .then((result) => console.log(result.user))
+      .then((result) => {
+        console.log(result.user);
+        navigate(from);
+      })
       .catch((err) => console.log(err.code));
   };
 
