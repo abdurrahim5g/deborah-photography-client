@@ -4,6 +4,7 @@ import Title from "../../components/Title/Title";
 import { useEffect } from "react";
 import { useAuthContex } from "../../Contex/AuthProvider";
 import ReviewSingle from "../../components/ReviewSingle/ReviewSingle";
+import { toast } from "react-hot-toast";
 
 const MyReviews = () => {
   const { user } = useAuthContex();
@@ -18,6 +19,27 @@ const MyReviews = () => {
       });
   }, [user]);
 
+  // delete review
+  const handleDeleteReview = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/review/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.acknowledged && data.deletedCount === 1) {
+          const remainingReviews = reviews.filter(
+            (review) => review._id !== id
+          );
+          setReviews(remainingReviews);
+          toast.success("Review deleted successfuly");
+        } else {
+          toast.error("Review can't exist");
+        }
+      });
+  };
+
   return (
     <section
       className="others-info py-12 md:py-20"
@@ -30,7 +52,11 @@ const MyReviews = () => {
 
         <div className="row mt-10 grid gap-8">
           {reviews?.map((review) => (
-            <ReviewSingle key={review._id} review={review}></ReviewSingle>
+            <ReviewSingle
+              key={review._id}
+              review={review}
+              handleDeleteReview={handleDeleteReview}
+            ></ReviewSingle>
           ))}
           {reviews?.length === 0 && (
             <h2 className="text-center font-semibold text-2xl text-gray-700">
