@@ -1,10 +1,11 @@
 import { Link, useLoaderData } from "react-router-dom";
 import "./SingleService.css";
 import Title from "../../components/Title/Title";
-import { FaClock, FaDollarSign, FaStar, FaUser } from "react-icons/fa";
+import { FaClock, FaDollarSign, FaUser } from "react-icons/fa";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { useEffect, useState } from "react";
+import ReviewSingle from "../../components/ReviewSingle/ReviewSingle";
 
 const SingleService = () => {
   const service = useLoaderData();
@@ -30,7 +31,7 @@ const SingleService = () => {
             </h2>
 
             <p className="hidden text-gray-500 md:mt-4 md:block">
-              {service?.desc.slice(0, 150)}...
+              {service?.desc?.slice(0, 150)}...
             </p>
 
             <div className="mt-4 md:mt-8">
@@ -118,36 +119,7 @@ const SingleService = () => {
 
           <div className="row mt-10 grid gap-8">
             {reviews?.map((review) => (
-              <article key={review._id} className="single-review">
-                <div className="flex items-center mb-4 space-x-4">
-                  <img
-                    className="w-10 h-10 rounded-full object-cover border-yellow-400 shadow-lg border-2"
-                    src={review.clientImage}
-                    alt={review.className}
-                  />
-                  <div className="space-y-1 font-medium dark:text-white">
-                    <p>{review.clientName} </p>
-                  </div>
-                </div>
-                <div className="pl-14">
-                  <div className="flex items-center mb-1 gap-1">
-                    {[...Array(parseInt(review.rating)).keys()].map((key) => (
-                      <FaStar key={key} className="text-yellow-500" />
-                    ))}
-                    {[...Array(parseInt(5 - review.rating)).keys()].map(
-                      (key) => (
-                        <FaStar key={key} className="text-gray-400" />
-                      )
-                    )}
-                  </div>
-
-                  {review.reviewText.split("\n").map((single, index) => (
-                    <p key={index} className="mt-4">
-                      {single}
-                    </p>
-                  ))}
-                </div>
-              </article>
+              <ReviewSingle key={review._id} review={review}></ReviewSingle>
             ))}
             {reviews?.length === 0 && (
               <h2 className="text-center font-semibold text-2xl text-gray-700">

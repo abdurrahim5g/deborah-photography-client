@@ -24,6 +24,7 @@ const Header = () => {
     <>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/services">services</NavLink>
+      {user?.uid && <NavLink to="/my-reviews">my reviews</NavLink>}
     </>
   );
 
@@ -39,12 +40,12 @@ const Header = () => {
 
           <nav
             aria-label="Global"
-            className="hidden gap-8 text-sm font-medium md:flex md:flex-1 justify-center header-nav"
+            className="hidden gap-4 text-sm font-medium md:flex md:flex-1 justify-center header-nav"
           >
             {menuItems}
           </nav>
 
-          <div className="items-center justify-end gap-4 sm:flex md:flex-1">
+          <div className="items-center justify-end gap-4 sm:flex md:flex-1 header-nav">
             {!user?.uid ? (
               <Link
                 className="rounded bg-blue-500 px-5 py-2 text-sm font-medium text-white"
@@ -53,12 +54,14 @@ const Header = () => {
                 Sign up
               </Link>
             ) : (
-              <button
-                className="rounded bg-yellow-500 hover:bg-yellow-400 px-5 py-2 text-sm font-medium text-white"
-                onClick={handleLogout}
-              >
-                Sign Out
-              </button>
+              <>
+                <button
+                  className="rounded bg-yellow-500 hover:bg-yellow-400 px-5 py-2 text-sm font-medium text-white"
+                  onClick={handleLogout}
+                >
+                  Sign Out
+                </button>
+              </>
             )}
           </div>
 
