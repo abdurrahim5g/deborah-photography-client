@@ -9,6 +9,7 @@ import TramsAndCondition from "../Pages/TramsAndCondition/TramsAndCondition";
 import ReviewPage from "../Pages/ReviewPage/ReviewPage";
 import Protected from "./Protected";
 import MyReviews from "../Pages/MyReviews/MyReviews";
+import EditReview from "../Pages/EditReview/EditReview";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,16 @@ const router = createBrowserRouter([
             <MyReviews></MyReviews>
           </Protected>
         ),
+      },
+      {
+        path: "my-reviews/edit/:id",
+        element: (
+          <Protected>
+            <EditReview></EditReview>
+          </Protected>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/review/${params.id}`),
       },
       {
         path: "login",
