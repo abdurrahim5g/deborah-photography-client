@@ -1,48 +1,97 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import "./ReviewPage.css";
 import Title from "../../components/Title/Title";
 import { FaClock, FaDollarSign, FaStar, FaUser } from "react-icons/fa";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import { useAuthContex } from "../../Contex/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const ReviewPage = () => {
   const service = useLoaderData();
-  console.log(service);
+  // console.log(service);
+  const { user } = useAuthContex();
+  const navigate = useNavigate();
+
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const rating = form.rating.value;
+    const reviewText = form.reviewText.value.trim();
+    const time = new Date().getTime();
+
+    if (rating.length === 0 || reviewText.length === 0) {
+      return toast.error(
+        "Please select the rating & type your review and then submit"
+      );
+    }
+
+    const reviewObj = {
+      clientName: user?.displayName,
+      clientEmail: user?.email,
+      clientImage: user?.photoURL,
+      rating: rating,
+      reviewText: reviewText,
+      timePosted: time,
+      serviceId: service._id,
+    };
+
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviewObj),
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged && data.insertedId) {
+          form.reset();
+          toast.success("Review updated successfuly! 😍");
+          navigate(`/services/${service._id}`);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <section className="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
         <div className="p-8 md:p-12 lg:px-16 lg:py-24">
           <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
             <div className="review-form">
-              <form action="#">
+              <form action="#" onSubmit={handleReviewSubmit}>
                 <div className="single-form-item">
-                  <div className="grid grid-cols-5 gap-2">
+                  <Title subtitle={"Leave a "}>Review</Title>
+                  <div className="grid grid-cols-5 gap-2 mt-10">
                     <div className="col">
-                      <input type="radio" name="rating" id="1" />
+                      <input type="radio" name="rating" id="1" value="1" />
                       <label htmlFor="1">
                         1 <FaStar />
                       </label>
                     </div>
                     <div className="col">
-                      <input type="radio" name="rating" id="2" />
+                      <input type="radio" name="rating" id="2" value="2" />
                       <label htmlFor="2">
                         2 <FaStar />
                       </label>
                     </div>
                     <div className="col">
-                      <input type="radio" name="rating" id="3" />
+                      <input type="radio" name="rating" id="3" value="3" />
                       <label htmlFor="3">
                         3 <FaStar />
                       </label>
                     </div>
                     <div className="col">
-                      <input type="radio" name="rating" id="4" />
+                      <input type="radio" name="rating" id="4" value="4" />
                       <label htmlFor="4">
                         4 <FaStar />
                       </label>
                     </div>
                     <div className="col">
-                      <input type="radio" name="rating" id="5" />
+                      <input type="radio" name="rating" id="5" value="5" />
                       <label htmlFor="5">
                         5 <FaStar />
                       </label>
@@ -51,10 +100,10 @@ const ReviewPage = () => {
                 </div>
 
                 <div className="single-form-item">
-                  <label htmlFor="ratingText">Rating text</label>
+                  <label htmlFor="reviewText">Rating text</label>
                   <textarea
-                    name="ratingText"
-                    id="ratingText"
+                    name="reviewText"
+                    id="reviewText"
                     cols="30"
                     rows="5"
                     placeholder="Rating Text"
