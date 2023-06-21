@@ -24,6 +24,7 @@ const Header = () => {
     <>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/services">services</NavLink>
+      <NavLink to="/blogs">Blogs</NavLink>
       {user?.uid && (
         <>
           <NavLink to="/my-reviews">my reviews</NavLink>
