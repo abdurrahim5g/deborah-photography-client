@@ -23,7 +23,7 @@ const BlogSingle = () => {
               {blog.title}
             </h3>
 
-            {blog.description.split("\n").map((single, index) => (
+            {blog?.description?.split("\n").map((single, index) => (
               <p className="mt-2 relaxed text-gray-500" key={index}>
                 {single}
               </p>
