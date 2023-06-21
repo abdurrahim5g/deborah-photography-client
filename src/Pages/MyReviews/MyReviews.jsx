@@ -11,7 +11,7 @@ const MyReviews = () => {
   const [reviews, setReviews] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review?clientEmail=${user?.email}`)
+    fetch(`https://photography-server-f-rahim.vercel.app/review?clientEmail=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -22,7 +22,7 @@ const MyReviews = () => {
   // delete review
   const handleDeleteReview = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/review/${id}`, {
+    fetch(`https://photography-server-f-rahim.vercel.app/review/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

@@ -20,18 +20,22 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://photography-server-f-rahim.vercel.app/services"),
       },
       {
         path: "/services",
         element: <ServicePage></ServicePage>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://photography-server-f-rahim.vercel.app/services"),
       },
       {
         path: "/services/:id",
         element: <SingleService></SingleService>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://photography-server-f-rahim.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/review/:id",
@@ -41,7 +45,9 @@ const router = createBrowserRouter([
           </Protected>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://photography-server-f-rahim.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/my-reviews",
@@ -67,7 +73,9 @@ const router = createBrowserRouter([
           </Protected>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/review/${params.id}`),
+          fetch(
+            `https://photography-server-f-rahim.vercel.app/review/${params.id}`
+          ),
       },
       {
         path: "login",

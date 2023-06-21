@@ -23,7 +23,7 @@ const EditReview = () => {
     };
     // console.log(updatedReview);
 
-    fetch(`http://localhost:5000/review/${_id}`, {
+    fetch(`https://photography-server-f-rahim.vercel.app/review/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
