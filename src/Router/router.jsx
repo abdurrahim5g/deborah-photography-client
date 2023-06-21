@@ -21,7 +21,9 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () =>
-          fetch("https://photography-server-f-rahim.vercel.app/services"),
+          fetch(
+            "https://photography-server-f-rahim.vercel.app/services?limit=3"
+          ),
       },
       {
         path: "/services",
