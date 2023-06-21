@@ -12,6 +12,7 @@ import MyReviews from "../Pages/MyReviews/MyReviews";
 import EditReview from "../Pages/EditReview/EditReview";
 import AddService from "../Pages/AddService/AddService";
 import Blogs from "../Pages/Blogs/Blogs";
+import BlogSingle from "../Pages/BlogSingle/BlogSingle";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,14 @@ const router = createBrowserRouter([
         element: <Blogs></Blogs>,
         loader: () =>
           fetch("https://photography-server-f-rahim.vercel.app/blogs"),
+      },
+      {
+        path: "blogs/:id",
+        element: <BlogSingle></BlogSingle>,
+        loader: ({ params }) =>
+          fetch(
+            `https://photography-server-f-rahim.vercel.app/blogs/${params.id}`
+          ),
       },
       {
         path: "login",
