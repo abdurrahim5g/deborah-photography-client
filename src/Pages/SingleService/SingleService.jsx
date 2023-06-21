@@ -18,11 +18,11 @@ const SingleService = () => {
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
-        console.log(data);
+        // console.log(data);
       });
   }, [service]);
 
-  // console.log(service);
+  console.log(service);
   return (
     <>
       <section className="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
@@ -103,8 +103,20 @@ const SingleService = () => {
               </article>
             </div>
 
-            <div className="description">
-              <p className="mt-10">{service.desc}</p>
+            <div className="description my-10">
+              <h3 className="font-semibold text-xl mb-4">Description:</h3>
+              <p className="">{service.desc}</p>
+            </div>
+
+            <div className="description my-10">
+              <h3 className="font-semibold text-xl mb-4">Include Services:</h3>
+              <ul className="list-disc pl-5 ">
+                {service.included_services.split("\n").map((single, index) => (
+                  <li key={index} className="mt-2">
+                    {single}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
