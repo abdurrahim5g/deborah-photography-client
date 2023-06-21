@@ -24,7 +24,12 @@ const Header = () => {
     <>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/services">services</NavLink>
-      {user?.uid && <NavLink to="/my-reviews">my reviews</NavLink>}
+      {user?.uid && (
+        <>
+          <NavLink to="/my-reviews">my reviews</NavLink>
+          <NavLink to="/add-service">Add Service</NavLink>
+        </>
+      )}
     </>
   );
 
@@ -40,7 +45,7 @@ const Header = () => {
 
           <nav
             aria-label="Global"
-            className="hidden gap-4 text-sm font-medium md:flex md:flex-1 justify-center header-nav"
+            className="hidden gap-4 text-sm font-medium md:flex  justify-center header-nav"
           >
             {menuItems}
           </nav>
@@ -75,7 +80,7 @@ const Header = () => {
             </button>
             {show && (
               <div className="mobile-menu transi border absolute w-28 right-3 top-24 bg-white p-3 shadow-lg rounded">
-                <nav className="grid gap-2 ">{menuItems}</nav>
+                <nav className="grid gap-2 capitalize">{menuItems}</nav>
               </div>
             )}
           </div>

@@ -1,0 +1,30 @@
+.service-form .single-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.service-form .single-input label {
+  width: 180px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.service-form .single-input textarea,
+.service-form .single-input input {
+  border: 1px solid #ccc;
+  padding: 8px 20px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* ====================
+ * Responsive styles
+ * =====================*/
+@media all and (max-width: 767px) {
+  .service-form .single-input {
+    display: block;
+  }
+  .service-form .single-input label {
+    margin-bottom: 7px;
+    display: block;
+  }
+}
