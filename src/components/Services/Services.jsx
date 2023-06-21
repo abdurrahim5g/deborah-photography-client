@@ -25,6 +25,9 @@ const Services = ({ page }) => {
                 ></ServiceCard>
               ))}
             </div>
+            {services.length === 0 && (
+              <h3 className="text-center text-2xl">No service available</h3>
+            )}
           </div>
         </div>
 
