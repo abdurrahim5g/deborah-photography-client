@@ -4,8 +4,10 @@ import google from "../../assets/images/google.png";
 import { useState } from "react";
 import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { useAuthContex } from "../../Contex/AuthProvider";
+import { updatePageTitle } from "../../utility/utility";
 
 const Signup = () => {
+  updatePageTitle("Signup");
   const [userInfo, setUserInfo] = useState({});
   const [agree, setAgree] = useState(false);
   const navigate = useNavigate();

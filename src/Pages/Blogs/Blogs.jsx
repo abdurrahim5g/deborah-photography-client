@@ -1,8 +1,10 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Title from "../../components/Title/Title";
 import "./Blogs.css";
+import { updatePageTitle } from "../../utility/utility";
 
 const Blogs = () => {
+  updatePageTitle("Blogs");
   const blogs = useLoaderData();
 
   return (

@@ -4,8 +4,10 @@ import "./EditReview.css";
 // import { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { updatePageTitle } from "../../utility/utility";
 
 const EditReview = () => {
+  updatePageTitle("Edit Review");
   const review = useLoaderData();
   const { rating, reviewText, _id } = review;
   const navigate = useNavigate();

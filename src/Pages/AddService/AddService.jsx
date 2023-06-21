@@ -3,8 +3,10 @@ import { useAuthContex } from "../../Contex/AuthProvider";
 import Title from "../../components/Title/Title";
 import "./AddService.css";
 import { useForm } from "react-hook-form";
+import { updatePageTitle } from "../../utility/utility";
 
 const AddService = () => {
+  updatePageTitle("Add service");
   // get user from AuthContex
   const { user } = useAuthContex();
 

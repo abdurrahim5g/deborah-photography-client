@@ -4,8 +4,10 @@ import google from "../../assets/images/google.png";
 import { useState } from "react";
 import { useAuthContex } from "../../Contex/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import { updatePageTitle } from "../../utility/utility";
 
 const Login = () => {
+  updatePageTitle("Login");
   const [userInfo, setUserInfo] = useState({});
   // contex provider
   const { providerSignIn, userLogin } = useAuthContex();

@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import { Link, useLoaderData } from "react-router-dom";
+import { updatePageTitle } from "../../utility/utility";
 
 const BlogSingle = () => {
+  updatePageTitle("Single Blog");
   const blog = useLoaderData();
 
   return (

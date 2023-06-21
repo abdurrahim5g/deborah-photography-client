@@ -5,13 +5,17 @@ import { useEffect } from "react";
 import { useAuthContex } from "../../Contex/AuthProvider";
 import ReviewSingle from "../../components/ReviewSingle/ReviewSingle";
 import { toast } from "react-hot-toast";
+import { updatePageTitle } from "../../utility/utility";
 
 const MyReviews = () => {
+  updatePageTitle("My Review");
   const { user } = useAuthContex();
   const [reviews, setReviews] = useState();
 
   useEffect(() => {
-    fetch(`https://photography-server-f-rahim.vercel.app/review?clientEmail=${user?.email}`)
+    fetch(
+      `https://photography-server-f-rahim.vercel.app/review?clientEmail=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

@@ -6,8 +6,10 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { useAuthContex } from "../../Contex/AuthProvider";
 import { toast } from "react-hot-toast";
+import { updatePageTitle } from "../../utility/utility";
 
 const ReviewPage = () => {
+  updatePageTitle("Review");
   const service = useLoaderData();
   // console.log(service);
   const { user } = useAuthContex();

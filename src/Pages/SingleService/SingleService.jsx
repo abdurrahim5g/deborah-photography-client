@@ -6,8 +6,10 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { useEffect, useState } from "react";
 import ReviewSingle from "../../components/ReviewSingle/ReviewSingle";
+import { updatePageTitle } from "../../utility/utility";
 
 const SingleService = () => {
+  updatePageTitle("Single service");
   const service = useLoaderData();
   const [reviews, setReviews] = useState();
 

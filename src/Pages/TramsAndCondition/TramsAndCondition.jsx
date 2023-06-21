@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import Title from "../../components/Title/Title";
 import "./TramsAndCondition.css";
+import { updatePageTitle } from "../../utility/utility";
 
 const TramsAndCondition = () => {
+  updatePageTitle("Trams and condition");
   return (
     <section
       className="trams-and-condition-page py-12 md:py-20 "
